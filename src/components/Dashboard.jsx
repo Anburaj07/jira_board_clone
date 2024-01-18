@@ -1,15 +1,20 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
+import Banner1 from "./Banner1";
+import Table from "./Table";
 
 const Dashboard = () => {
   return (
-    <DASHBOARD>Dashboard</DASHBOARD>
-  )
-}
+    <DASHBOARD className="p-8">
+      <Banner1 />
+      <Table/>
+    </DASHBOARD>
+  );
+};
 
-export default Dashboard
+export default Dashboard;
 
-const DASHBOARD=styled.div`
-    width: 75%;
-    border-bottom: 1px solid red;
-`
+const DASHBOARD = styled.div`
+  width: 85%;
+  border-bottom: 1px solid red;
+`;

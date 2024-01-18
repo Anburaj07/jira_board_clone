@@ -27,7 +27,11 @@ const Navbar = () => {
           <div>
             <img src={search} alt="search" />
           </div>
-          <input type="text" placeholder="Search" className="bg-[#ffffff]" />
+          <input
+            type="text"
+            placeholder="Search"
+            className="bg-[#ffffff] pl-2"
+          />
         </div>
       </div>
     </NAVBAR>
@@ -36,13 +40,13 @@ const Navbar = () => {
 
 export default Navbar;
 
-const NAVBAR=styled.div`
+const NAVBAR = styled.div`
   border-bottom: 1px solid #e9e9ec;
-  p:hover{
-    color: #0052CC;
+  p:hover {
+    color: #0052cc;
     cursor: pointer;
   }
-  img:hover{
+  img:hover {
     cursor: pointer;
   }
-`
+`;
