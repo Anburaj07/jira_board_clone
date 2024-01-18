@@ -37,9 +37,12 @@ const Navbar = () => {
 export default Navbar;
 
 const NAVBAR=styled.div`
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #e9e9ec;
   p:hover{
     color: #0052CC;
+    cursor: pointer;
+  }
+  img:hover{
     cursor: pointer;
   }
 `
