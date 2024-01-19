@@ -5,7 +5,7 @@ import HomePage from "../pages/HomePage";
 const AllRoutes = () => {
   return (
     <Routes>
-      <Route path="" element={<HomePage />} />
+      <Route path="/" element={<HomePage />} />
     </Routes>
   );
 };

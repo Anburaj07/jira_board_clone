@@ -5,7 +5,10 @@ import Cart from "./Cart";
 import { addTask, moveTask } from "../redux/slices/tasksSlice";
 
 const Task = ({ title, id }) => {
+  // Fetch tasks from the Redux store
   const tasks = useSelector((store) => store.tasks[title]);
+
+  // Determine the heading based on the task title
   let heading =
     title == "todo"
       ? "TODO"
@@ -16,39 +19,49 @@ const Task = ({ title, id }) => {
       : title == "inReview"
       ? "IN REVIEW"
       : "DONE";
+
+  // State for task creation
   const [create, setCreate] = useState(false);
   const [data, setData] = useState("");
   const dispatch = useDispatch();
 
+  // Handle adding a new task
   const handleAddTask = () => {
-    if(data===""){
-        alert("Enter Valid Task!!")
-        return
+    if (data === "") {
+      alert("Enter Valid Task!!");
+      return;
     }
     setCreate(false);
-    console.log({ title: title, task: data });
+    // Dispatch action to add a new task
     dispatch(addTask({ title: title, task: data }));
     setData("");
   };
 
+  // Handle the drag start event for tasks
   const handleDragStart = (e, taskIndex) => {
-    console.log(title, "id");
+    // Serialize task data to be transferred during drag-and-drop
     const data = JSON.stringify({ taskIndex, title });
     e.dataTransfer.setData("application/json", data);
   };
 
+  // Handle the drag over event during drag-and-drop
   const handleDragOver = (e) => {
     e.preventDefault();
   };
 
+  // Handle the drop event during drag-and-drop
   const handleDrop = (e) => {
     e.preventDefault();
+    // Identify the destination column based on the drop target id
     const toTitle = e.target.id;
 
+    // Retrieve the serialized task data from the data transfer
     const jsonData = e.dataTransfer.getData("application/json");
     if (jsonData) {
+      // Parse the serialized data to get taskIndex and title
       const { taskIndex, title } = JSON.parse(jsonData);
       console.log({ fromTitle: title, toTitle, taskIndex });
+      // Dispatch action to move the task
       dispatch(moveTask({ fromTitle: title, toTitle, taskIndex }));
     }
   };
@@ -57,7 +70,7 @@ const Task = ({ title, id }) => {
       id={id}
       className="pl-2 pr-2"
       onDragOver={handleDragOver}
-      onDrop={(e) => handleDrop(e, title)}
+      onDrop={(e) => handleDrop(e)}
     >
       <h1>
         {heading} {tasks.length}
@@ -72,11 +85,14 @@ const Task = ({ title, id }) => {
           />
         ))}
       </div>
+
+      {/* Render the option to create a new task */}
       {!create && (
         <div className="hover:bg-[#f1f2f4] cursor-pointer">
           <h2 onClick={() => setCreate(true)}>+ Create issue</h2>
         </div>
       )}
+      {/* Render the input form for creating a new task */}
       {create && (
         <div id="addTask">
           {" "}
@@ -88,7 +104,10 @@ const Task = ({ title, id }) => {
               setData(e.target.value);
             }}
           />
-          <button className="bg-[#626f86] text-[#ffffff]" onClick={handleAddTask}>
+          <button
+            className="bg-[#626f86] text-[#ffffff]"
+            onClick={handleAddTask}
+          >
             Add Task
           </button>
         </div>
@@ -102,7 +121,7 @@ export default Task;
 const TASK = styled.div`
   width: 18%;
   background-color: #f7f8f9;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
   h1 {
     color: #626f86;
     background-color: #f7f8f9;
