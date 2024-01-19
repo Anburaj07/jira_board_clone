@@ -53,7 +53,7 @@ const SideBar = () => {
           </div>
         </div>
       </div>
-      <div id="projectFeautes" className="pl-3 pb-10">
+      <div id="projectFeautes" className="pl-3 pb-5 pt-5">
         <div>
           <div>
             <img src={pages} alt="pages" />
@@ -100,6 +100,9 @@ const SIDEBAR = styled.div`
         padding-left: 10px;
         font-size: 0.875rem; /* 14px */
         line-height: 1.25rem;
+      }
+      p:hover{
+        cursor: pointer;
       }
     }
   }

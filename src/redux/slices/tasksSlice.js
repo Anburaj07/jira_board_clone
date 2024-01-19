@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const tasksSlice = createSlice({
   name: "tasks",
   initialState: {
-    todo: ["Create a POST endpoint for sharing","Create a POST endpoint for sharing"],
+    todo: ["Create a POST endpoint for sharing"],
     readyForDev: ["Enhanching user Authentication"],
     inDevelopment: ["Create a PUT endpoint to update"],
     inReview: ["Create a ER Diagram"],

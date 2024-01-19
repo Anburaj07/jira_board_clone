@@ -16,5 +16,4 @@ export default Dashboard;
 
 const DASHBOARD = styled.div`
   width: 85%;
-  border-bottom: 1px solid red;
 `;
