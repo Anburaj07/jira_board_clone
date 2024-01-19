@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import Banner1 from "./Banner1";
-import Table from "./Table";
+import Board from "./Board";
 
 const Dashboard = () => {
   return (
     <DASHBOARD className="p-8">
       <Banner1 />
-      <Table/>
+      <Board/>
     </DASHBOARD>
   );
 };
