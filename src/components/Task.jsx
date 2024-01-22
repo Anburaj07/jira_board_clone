@@ -23,6 +23,7 @@ const Task = ({ title, id }) => {
 
   // State for task creation
   const [create, setCreate] = useState(false);
+  const [data,setData]=useState('');
 
   //States for edit task
   const [isEditing, setIsEditing] = useState(false);
