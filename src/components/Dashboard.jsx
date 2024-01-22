@@ -7,7 +7,7 @@ const Dashboard = () => {
   return (
     <DASHBOARD className="p-8">
       <Banner1 />
-      <Board/>
+      <Board />
     </DASHBOARD>
   );
 };

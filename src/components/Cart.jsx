@@ -1,9 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const Cart = ({ content, onDragStart, title }) => {
+const Cart = ({ content, onDragStart, title, handleUpdateTask }) => {
   return (
-    <CART draggable onDragStart={onDragStart} title={title}>
+    <CART
+      onClick={handleUpdateTask}
+      draggable
+      onDragStart={onDragStart}
+      title={title}
+    >
       <p>{content}</p>
       {title == "done" && "✅"}
     </CART>
@@ -14,7 +19,7 @@ export default Cart;
 
 const CART = styled.div`
   display: flex;
-  cursor: grab;
+  cursor: pointer;
   background-color: #ffffff;
   color: black;
   padding: 10px;

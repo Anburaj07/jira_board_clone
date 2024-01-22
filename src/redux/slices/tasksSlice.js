@@ -19,8 +19,12 @@ const tasksSlice = createSlice({
       const [movedTask] = state[fromTitle].splice(taskIndex, 1);
       state[toTitle].push(movedTask);
     },
+    updateTask: (state, action) => {
+      const { title, taskIndex, updatedTask } = action.payload;
+      state[title][taskIndex] = updatedTask;
+    },
   },
 });
 
-export const { addTask, moveTask } = tasksSlice.actions;
+export const { addTask, moveTask, updateTask } = tasksSlice.actions;
 export default tasksSlice.reducer;

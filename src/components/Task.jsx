@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Cart from "./Cart";
-import { addTask, moveTask } from "../redux/slices/tasksSlice";
+import { addTask, moveTask, updateTask } from "../redux/slices/tasksSlice";
+import EditTask from "./EditTask";
 
 const Task = ({ title, id }) => {
   // Fetch tasks from the Redux store
@@ -22,7 +23,11 @@ const Task = ({ title, id }) => {
 
   // State for task creation
   const [create, setCreate] = useState(false);
-  const [data, setData] = useState("");
+
+  //States for edit task
+  const [isEditing, setIsEditing] = useState(false);
+  const [editData, setEditData] = useState({ data: "", index: "" });
+
   const dispatch = useDispatch();
 
   // Handle adding a new task
@@ -65,6 +70,29 @@ const Task = ({ title, id }) => {
       dispatch(moveTask({ fromTitle: title, toTitle, taskIndex }));
     }
   };
+
+  // Handle the update task when clicking task
+  const handleUpdateTask = (e, task, taskIndex) => {
+    // Show the edit modal and set the task being edited
+    setEditData({
+      ...editData,
+      data: task,
+      index: taskIndex,
+    });
+    setIsEditing(true);
+  };
+
+  // Handle the edit task using redux
+  const handleEditTask = (index, editData) => {
+    dispatch(
+      updateTask({
+        title,
+        taskIndex: index,
+        updatedTask: editData,
+      })
+    );
+    setIsEditing(false);
+  };
   return (
     <TASK
       id={id}
@@ -82,13 +110,14 @@ const Task = ({ title, id }) => {
             title={title}
             content={el}
             onDragStart={(e) => handleDragStart(e, ind)}
+            handleUpdateTask={(e) => handleUpdateTask(e, el, ind)}
           />
         ))}
       </div>
 
       {/* Render the option to create a new task */}
       {!create && (
-        <div className="hover:bg-[#f1f2f4] cursor-pointer">
+        <div className="hover:bg-[#f1f2f4] cursor-pointer ">
           <h2 onClick={() => setCreate(true)}>+ Create issue</h2>
         </div>
       )}
@@ -99,7 +128,7 @@ const Task = ({ title, id }) => {
           <input
             type="text"
             value={data}
-            className="bg-[#ffffff]"
+            className="bg-[#ffffff] border border-gray-500"
             onChange={(e) => {
               setData(e.target.value);
             }}
@@ -111,6 +140,15 @@ const Task = ({ title, id }) => {
             Add Task
           </button>
         </div>
+      )}
+
+      {isEditing && (
+        <EditTask
+          editData={editData}
+          setEditData={setEditData}
+          handleEditTask={handleEditTask}
+          setIsEditing={setIsEditing}
+        />
       )}
     </TASK>
   );
