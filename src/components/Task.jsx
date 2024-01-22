@@ -22,8 +22,8 @@ const Task = ({ title, id }) => {
       : "DONE";
 
   // State for task creation
-  const [create, setCreate] = useState(false);
-  const [data,setData]=useState('');
+  const [isCreating, setIsCreating] = useState(false);
+  const [data, setData] = useState("");
 
   //States for edit task
   const [isEditing, setIsEditing] = useState(false);
@@ -37,7 +37,7 @@ const Task = ({ title, id }) => {
       alert("Enter Valid Task!!");
       return;
     }
-    setCreate(false);
+    setIsCreating(false);
     // Dispatch action to add a new task
     dispatch(addTask({ title: title, task: data }));
     setData("");
@@ -117,13 +117,13 @@ const Task = ({ title, id }) => {
       </div>
 
       {/* Render the option to create a new task */}
-      {!create && (
+      {!isCreating && (
         <div className="hover:bg-[#f1f2f4] cursor-pointer ">
-          <h2 onClick={() => setCreate(true)}>+ Create issue</h2>
+          <h2 onClick={() => setIsCreating(true)}>+ Create issue</h2>
         </div>
       )}
       {/* Render the input form for creating a new task */}
-      {create && (
+      {isCreating && (
         <div id="addTask">
           {" "}
           <input
