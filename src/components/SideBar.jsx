@@ -101,7 +101,7 @@ const SIDEBAR = styled.div`
         font-size: 0.875rem; /* 14px */
         line-height: 1.25rem;
       }
-      p:hover{
+      p:hover {
         cursor: pointer;
       }
     }
